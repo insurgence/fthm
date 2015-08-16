@@ -9,13 +9,18 @@ use Win32API::File 0.08 qw( :ALL );
 
 my @drives = Win32::DriveInfo::DrivesInUse();
 my @hard_drives;
-my $N = 1;
+my $N = 0;
 
 for(my $i = $[; $i <= $#drives; $i++)
 {
-	print "$N. $drives[$i]\n";
-	$hard_drives[$N] = $drives[$i];
+	my $type = Win32::DriveInfo::DriveType($drives[$i]);
 	$N++;
+	if($type == 3)
+	{
+		print "$N. $drives[$i] (HDD)\n";
+	} elsif ($type == 2){
+		print "$N. $drives[$i] (Flash drive)\n";
+	} else {
+		--$N;
+	}
 }
-
-
