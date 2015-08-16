@@ -13,8 +13,8 @@ my $N = 0;
 
 for(my $i = $[; $i <= $#drives; $i++)
 {
-	my $type = Win32::DriveInfo::DriveType($drives[$i]);
 	$N++;
+	my $type = Win32::DriveInfo::DriveType($drives[$i]);
 	if($type == 3)
 	{
 		print "$N. $drives[$i] (HDD)\n";
