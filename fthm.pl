@@ -13,7 +13,7 @@ my $N = 1;
 
 for(my $i = $[; $i <= $#drives; $i++)
 {
-	print "$N." . "$drives[$i]\n";
+	print "$N. $drives[$i]\n";
 	$hard_drives[$N] = $drives[$i];
 	$N++;
 }
