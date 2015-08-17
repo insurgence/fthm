@@ -7,6 +7,7 @@ use warnings;
 use Win32::DriveInfo;
 use Win32API::File 0.08 qw( :ALL );
 use POSIX qw(floor);
+use Term::ProgressBar 2.00;
 
 my @drives = Win32::DriveInfo::DrivesInUse();
 my @hard_drives;
@@ -41,12 +42,19 @@ my $FileSize = -s('WvesDq13X3w.jpg');
 my $num = floor($TotalNumberOfFreeBytes / $FileSize);
 my $K = 1;
 
+print $num . "\n";
+
+my $progress = Term::ProgressBar->new($num);
+
 mkdir("$drives[$N]:\\f\\");
+
+system("ECHO OFF");
 
 while($K <= $num)
 {
-	system("COPY WvesDq13X3w.jpg $drives[$N]:\\f\\F${K}.jpg");
+	system("1>nul COPY WvesDq13X3w.jpg $drives[$N]:\\f\\F${K}.jpg");
 	++$K;
+	$progress->update($K);
 }
 #system("FORMAT $drives[$N]:/Q");
 
