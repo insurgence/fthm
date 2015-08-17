@@ -42,13 +42,9 @@ my $FileSize = -s('WvesDq13X3w.jpg');
 my $num = floor($TotalNumberOfFreeBytes / $FileSize);
 my $K = 1;
 
-print $num . "\n";
-
 my $progress = Term::ProgressBar->new($num);
 
 mkdir("$drives[$N]:\\f\\");
-
-system("ECHO OFF");
 
 while($K <= $num)
 {
@@ -57,5 +53,5 @@ while($K <= $num)
 	$progress->update($K);
 }
 #system("FORMAT $drives[$N]:/Q");
-
+ 
 #***********************************************************
